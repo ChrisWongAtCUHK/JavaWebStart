@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="upload" name="DynamicTreeDemo">
+	<property environment="env"/>
+	<property name="base-dir" value="bin"/>
+	<property name="project-name" value="DynamicTreeDemo"/>
+	<property name="created-by" value="Chris Wong"/>
+	<property name="main-class" value="webstartComponentArch.DynamicTreeApplication"/>
+	<property name="jnlp" value="dynamictree_webstart.jnlp" />
+	<property name="jnlp_no_codebase" value="dynamictree_webstart_no_codebase.jnlp" />
+
+	<!-- compile the project -->
+	<target name="compile" description="compile the source files">
+		<javac includeantruntime="false" srcdir="./src" destdir="${base-dir}" classpath="." >
+		</javac>
+	</target>
+
+	<!-- run the project -->
+	<target name="run" description="run the project">
+		<java jar="deploy/${project-name}.jar" fork="true"
+           failonerror="true" >
+		</java>
+	</target>
+	
+	<!-- prepare  -->
+	<target name="prepare" depends="compile">
+		<mkdir dir="deploy" />
+	</target>
+		
+	<!-- create the jar -->
+	<target name="build" depends="prepare">
+		<jar jarfile="deploy/${project-name}.jar" basedir="${base-dir}">
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0" />
+				<attribute name="Created-By" value="Chris Wong" />
+				<attribute name="Main-Class" value="${main-class}" />
+			</manifest>
+		</jar>
+		<echo>build by ${env.JAVA_HOME}</echo>
+	</target>
+	
+	<target name="upload" depends="build">
+		<copy todir="${env.JAVAWS_HOME}/${project-name}" file="deploy/${project-name}.jar" />
+		<copy todir="${env.JAVAWS_HOME}/${project-name}" file="src/${jnlp}" />
+		<copy todir="${env.JAVAWS_HOME}/${project-name}" file="src/${jnlp_no_codebase}" />
+	</target>
+</project>
