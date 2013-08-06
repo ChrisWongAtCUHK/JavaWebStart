@@ -33,7 +33,7 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <jnlp spec="1.0+" 
-        codebase="http://localhost/test"
+        codebase="http://localhost/JavaWebStart/DynamicTreeDemo"
         href="dynamictree_webstart.jnlp">
     <information>
         <title>Dynamic Tree Demo</title>
