@@ -31,10 +31,13 @@
 package webstartComponentArch;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class DynamicTreeApplication extends JFrame {
     public static void main(String [] args) {
         DynamicTreeApplication app = new DynamicTreeApplication();
+        JOptionPane.showMessageDialog(null, "args.length=" + args.length);
+
         app.createGUI();
     }
 
