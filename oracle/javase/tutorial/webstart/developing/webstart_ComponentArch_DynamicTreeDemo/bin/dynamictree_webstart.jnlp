@@ -39,6 +39,10 @@
         <title>Dynamic Tree Demo</title>
         <vendor>Dynamic Team</vendor>
     </information>
+	<security>
+		<j2ee-application-client-permissions />
+	</security>
+  
     <resources>
         <!-- Application Resources -->
         <j2se version="1.7+"
@@ -49,6 +53,9 @@
     <application-desc
          name="Dynamic Tree Demo Application"
          main-class="webstartComponentArch.DynamicTreeApplication">
+         <param name="paramStr" value="CW" />
      </application-desc>
+     <argument>test.txt</argument>
+     <argument>abc.txt</argument>
      <update check="background"/>
 </jnlp>

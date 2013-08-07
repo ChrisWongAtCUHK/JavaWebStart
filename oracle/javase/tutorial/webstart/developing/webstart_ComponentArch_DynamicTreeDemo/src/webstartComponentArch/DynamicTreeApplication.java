@@ -30,6 +30,14 @@
  */ 
 package webstartComponentArch;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -37,7 +45,22 @@ public class DynamicTreeApplication extends JFrame {
     public static void main(String [] args) {
         DynamicTreeApplication app = new DynamicTreeApplication();
         JOptionPane.showMessageDialog(null, "args.length=" + args.length);
-
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < args.length; i++)
+        	sb.append("args[" + i + "]:" + args[i] + "\n");
+        JOptionPane.showMessageDialog(null, sb.toString());
+        if(args.length > 0){
+        	// Read arg0 and read file
+        	String readFile = args[0];
+        	
+        	// Read arg1 and write file
+        	if(args.length > 1){
+        		String writeFile = args[1];
+            	write(writeFile, "Yo~");
+        	}
+        	
+        	JOptionPane.showMessageDialog(null, read(readFile));
+        }
         app.createGUI();
     }
 
@@ -49,5 +72,40 @@ public class DynamicTreeApplication extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-    }    
+    }
+    
+	// Print one file
+	public static String read(String filename) {
+		File file = new File(filename);
+		if(!file.exists()){
+			return filename + " does not exist.";
+		}
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(filename));
+			String inputLine;
+			StringBuffer sb = new StringBuffer();
+			while ((inputLine = br.readLine()) != null) {
+				sb.append(inputLine + "\n");
+			}
+			br.close();
+			return sb.toString();
+		} catch (IOException e) {
+			return filename + " is not ready";
+		}
+	}
+	
+	// Write a file
+	public static void write(String filename, String dataLine) {
+		try {
+			DataOutputStream dos;
+			File outFile = new File(filename);
+
+			dos = new DataOutputStream(new FileOutputStream(outFile));
+
+			dos.writeBytes(dataLine);
+			dos.close();
+		} catch (IOException ex) {
+			return;
+		}
+	}
 }

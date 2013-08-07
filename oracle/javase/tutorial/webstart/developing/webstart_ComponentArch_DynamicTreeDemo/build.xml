@@ -70,6 +70,7 @@
 				<file file="deploy/${project-name}.jar" />
 				<file file="src/${jnlp}" />
 				<file file="src/${jnlp_no_codebase}" />
+				<file file="src/test.txt" />
 			</resources>
 		</copy>
 	</target>
