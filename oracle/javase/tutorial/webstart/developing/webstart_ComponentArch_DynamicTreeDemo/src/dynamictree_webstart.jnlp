@@ -53,7 +53,6 @@
     <application-desc
          name="Dynamic Tree Demo Application"
          main-class="webstartComponentArch.DynamicTreeApplication">
-         <param name="paramStr" value="CW" />
      </application-desc>
      <argument>test.txt</argument>
      <argument>abc.txt</argument>

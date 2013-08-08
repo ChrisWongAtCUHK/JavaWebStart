@@ -31,6 +31,12 @@
 	    </genkey>
 	</target>
 	
+	<!-- IMPORTANT:
+		To solve unsigned entry issue
+			1.	check Keep temporary files on my computer in Java Control Panel
+			2.	clear Java Cache in Java Control Panel
+		Reference
+			 http://www.java.com/en/download/help/plugin_cache.xml -->
 	<!-- Sign the jar (required only for trusted launch) -->
 	<target name="signjar">
 	    <signjar
