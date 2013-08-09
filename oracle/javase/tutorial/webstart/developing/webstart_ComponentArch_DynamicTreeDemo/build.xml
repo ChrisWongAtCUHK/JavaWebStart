@@ -6,7 +6,9 @@
 	<property name="created-by" value="Chris Wong"/>
 	<property name="main-class" value="webstartComponentArch.DynamicTreeApplication"/>
 	<property name="jnlp" value="dynamictree_webstart.jnlp" />
+	<property name="html" value="JavaWebStartAppPage.html" />
 	<property name="jnlp_no_codebase" value="dynamictree_webstart_no_codebase.jnlp" />
+	<property name="html_no_codebase" value="JavaWebStartAppPage_No_Codebase.html" />
 	<property name="keystore" value="${project-name}.keystore" />
 	
 	<!-- compile the project -->
@@ -55,6 +57,9 @@
 	
 	<!-- prepare  -->
 	<target name="prepare" depends="compile">
+		<copy todir="${base-dir}/textfiles">
+			<file file="src/test.txt" />
+		</copy>
 		<mkdir dir="deploy" />
 	</target>
 		
@@ -76,6 +81,8 @@
 				<file file="deploy/${project-name}.jar" />
 				<file file="src/${jnlp}" />
 				<file file="src/${jnlp_no_codebase}" />
+				<file file="src/${html}" />
+				<file file="src/${html_no_codebase}" />
 				<file file="src/test.txt" />
 			</resources>
 		</copy>

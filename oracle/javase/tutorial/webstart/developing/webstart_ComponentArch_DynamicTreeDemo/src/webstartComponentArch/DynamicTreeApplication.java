@@ -33,19 +33,31 @@ package webstartComponentArch;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class DynamicTreeApplication extends JFrame {
-    public static void main(String [] args) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static void main(String [] args) {
         DynamicTreeApplication app = new DynamicTreeApplication();
+        String curDir = System.getProperty("user.dir");
+        JOptionPane.showMessageDialog(null, "current directory is " + curDir);
+        
+        getResourceFromJar("/textfiles/test.txt", "test.txt", curDir);
+        
         JOptionPane.showMessageDialog(null, "args.length=" + args.length);
         StringBuffer sb = new StringBuffer();
+        
         for(int i = 0; i < args.length; i++)
         	sb.append("args[" + i + "]:" + args[i] + "\n");
         JOptionPane.showMessageDialog(null, sb.toString());
@@ -61,6 +73,7 @@ public class DynamicTreeApplication extends JFrame {
         	
         	JOptionPane.showMessageDialog(null, read(readFile));
         }
+
         app.createGUI();
     }
 
@@ -108,4 +121,43 @@ public class DynamicTreeApplication extends JFrame {
 			return;
 		}
 	}
+	
+	// Get the resource from jar file and write it to destination directory 
+	public static void getResourceFromJar(String fullPath, String filename, String destDir){
+		// Check if the file exists already, if so do nothing
+		String destFileNameString = destDir + "/" + filename;
+		File destFile = new File(destFileNameString);
+		
+		if(destFile.exists()){
+			JOptionPane.showMessageDialog(null, destFile.getName() + " exists!!!" );
+			return;
+		}
+		
+		InputStream stream = DynamicTreeApplication.class.getResourceAsStream(fullPath);	//note that each / is a directory down in the "jar tree" been the jar the root of the tree"
+      if (stream == null) {
+          //send your exception or warning
+    	 return;
+      }
+      OutputStream resStreamOut;
+      int readBytes;
+      byte[] buffer = new byte[4096];
+      try {
+          resStreamOut = new FileOutputStream(destFile);
+          while ((readBytes = stream.read(buffer)) > 0) {
+              resStreamOut.write(buffer, 0, readBytes);
+          }
+          resStreamOut.close();
+			
+      } catch (IOException ioe) {
+          ioe.printStackTrace();
+      }
+
+      try {
+			stream.close();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+    
+	}
+	
 }
