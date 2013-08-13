@@ -42,6 +42,8 @@ import java.io.OutputStream;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import com.sun.xml.internal.bind.v2.runtime.property.Property;
+
 public class DynamicTreeApplication extends JFrame {
     /**
 	 * 
@@ -74,6 +76,12 @@ public class DynamicTreeApplication extends JFrame {
         	JOptionPane.showMessageDialog(null, read(readFile));
         }
 
+        String name = "test";
+        //System.setProperty(name, "hea");
+        String property = System.getProperty(name);
+        if(property != null){
+        	JOptionPane.showMessageDialog(null, "value of " + name + " is " + property);
+        }
         app.createGUI();
     }
 

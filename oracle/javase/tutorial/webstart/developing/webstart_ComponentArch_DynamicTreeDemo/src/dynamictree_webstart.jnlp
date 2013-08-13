@@ -48,14 +48,15 @@
         <j2se version="1.7+"
               href="http://java.sun.com/products/autodl/j2se"/>
         <jar href="DynamicTreeDemo.jar" main="true" />
-
+		<property name="test" value="accost" />
     </resources>
     <application-desc
          name="Dynamic Tree Demo Application"
          main-class="webstartComponentArch.DynamicTreeApplication">
-		<argument>test.txt</argument>
-		<argument>abc.txt</argument>
+		<argument>null</argument>
+		<argument>null</argument>
      </application-desc>
 
+	
      <update check="background"/>
 </jnlp>

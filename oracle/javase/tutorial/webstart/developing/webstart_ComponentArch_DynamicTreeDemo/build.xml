@@ -76,7 +76,8 @@
 	</target>
 	
 	<target name="upload" depends="signjar">
-		<copy todir="${env.JAVAWS_HOME}/${project-name}" file="deploy/${project-name}.jar" >
+		<!--TODO: config well in environment -->
+		<copy todir="${env.JAVAWS_HOME}/${project-name}" >
 			<resources>
 				<file file="deploy/${project-name}.jar" />
 				<file file="src/${jnlp}" />
