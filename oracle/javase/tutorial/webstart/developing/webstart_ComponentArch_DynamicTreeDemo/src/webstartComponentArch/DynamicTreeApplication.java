@@ -55,7 +55,7 @@ public class DynamicTreeApplication extends JFrame {
         String curDir = System.getProperty("user.dir");
         JOptionPane.showMessageDialog(null, "current directory is " + curDir);
         
-        getResourceFromJar("/textfiles/test.txt", "test.txt", curDir);
+        //getResourceFromJar("/textfiles/test.txt", "test.txt", curDir);
         
         JOptionPane.showMessageDialog(null, "args.length=" + args.length);
         StringBuffer sb = new StringBuffer();
@@ -63,26 +63,7 @@ public class DynamicTreeApplication extends JFrame {
         for(int i = 0; i < args.length; i++)
         	sb.append("args[" + i + "]:" + args[i] + "\n");
         JOptionPane.showMessageDialog(null, sb.toString());
-        if(args.length > 0){
-        	// Read arg0 and read file
-        	String readFile = args[0];
-        	
-        	// Read arg1 and write file
-        	if(args.length > 1){
-        		String writeFile = args[1];
-            	write(writeFile, "Yo~");
-        	}
-        	
-        	JOptionPane.showMessageDialog(null, read(readFile));
-        }
 
-        String name = "test";
-        //System.setProperty(name, "hea");
-        String property = System.getProperty(name);
-        if(property != null){
-        	JOptionPane.showMessageDialog(null, "value of " + name + " is " + property);
-        }
-        app.createGUI();
     }
 
     private void createGUI() {
